@@ -1,19 +1,24 @@
 #!/usr/bin/env python3
 # encoding: utf-8
+
+# sudo lsof -i :5000
 import json
 import os
 from flask import Flask, request, jsonify, redirect
+from datetime import datetime
 
 app = Flask(__name__)
 
-#def send_sms(phone_number):
-	# send sms to phone number
-
-@app.route('/clickEvent')
+@app.route('/offers')
 def click_event():
 	user_id = request.args.get('id')
 	print(user_id)
+	save_to_file(user_id)
 	return redirect("https://www.grubhub.com/restaurant/momo-magic-and-more-4006-w-plano-pkwy-plano/3017433", code=302)
+
+def save_to_file(user_id):
+	with open("Tracker.txt", "a") as file_object:
+		file_object.write('{}\t{}\n'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), user_id))
 
 
 if __name__ == '__main__':
