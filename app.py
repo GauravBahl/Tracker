@@ -14,7 +14,8 @@ def click_event():
 	user_id = request.args.get('id')
 	print(user_id)
 	save_to_file(user_id)
-	return redirect("https://www.grubhub.com/restaurant/momo-magic-and-more-4006-w-plano-pkwy-plano/3017433", code=302)
+	#https://www.grubhub.com/restaurant/momo-magic-and-more-4006-w-plano-pkwy-plano/3017433
+	return redirect("http://momomagicandmore.com/", code=302)
 
 def save_to_file(user_id):
 	with open("Tracker.txt", "a") as file_object:
